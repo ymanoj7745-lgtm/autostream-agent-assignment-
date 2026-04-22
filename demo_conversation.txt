@@ -1,0 +1,58 @@
+AutoStream Agent Demo Script
+
+Use this script during your 2 to 3 minute screen recording.
+
+1. Launch the app
+   Command:
+   python app.py
+
+2. Show a pricing question
+   User: Hi, tell me about your pricing.
+   Expected outcome:
+   - Agent recognizes this as an inquiry
+   - Agent answers using the local knowledge base
+
+3. Show a feature question
+   User: Does the Pro plan support 4K and AI captions?
+   Expected outcome:
+   - Agent retrieves the relevant pricing/features chunk
+   - Agent answers that Pro includes 4K and AI captions
+
+4. Show a policy question
+   User: Do you offer refunds and who gets 24/7 support?
+   Expected outcome:
+   - Agent answers from the local policy section
+   - It mentions no refunds after 7 days and Pro-only 24/7 support
+
+5. Show the high-intent shift
+   User: That sounds good. I want to try the Pro plan for my YouTube channel.
+   Expected outcome:
+   - Agent detects high intent
+   - Agent stores platform as YouTube
+   - Agent asks only for name and email
+
+6. Provide name
+   User: My name is Rahul.
+   Expected outcome:
+   - Agent remembers the user is already interested in Pro
+   - Agent remembers platform is YouTube
+   - Agent asks only for email
+
+7. Provide email
+   User: rahul@gmail.com
+   Expected outcome:
+   - Agent now has name, email, and platform
+   - Agent calls mock_lead_capture
+   - Terminal shows successful lead capture
+
+8. Optional extra memory check
+   User: Which plan gives me 24/7 support again?
+   Expected outcome:
+   - Agent can still answer from the knowledge base
+   - State remains stable even after the tool call
+
+Key points to mention while recording:
+- The knowledge base is local and stored in Markdown.
+- The agent uses LangGraph for stateful routing.
+- The lead capture tool is intentionally gated.
+- The agent remembers earlier information across multiple turns.
