@@ -57,7 +57,7 @@ python app.py
 
 ## Architecture Explanation
 
-I chose LangGraph because this assignment is not just a simple chatbot task. The required behavior is a small agentic workflow with routing, memory, retrieval, and tool execution. LangGraph fits that well because it gives explicit control over state and node transitions while still integrating cleanly with retrieval and LLM components. In this project, each user turn passes through a LangGraph flow that first classifies intent, then routes the conversation into one of three paths: greeting, knowledge retrieval, or lead qualification. This makes the system easier to reason about and aligns closely with the assignment’s expected workflow.
+I chose LangGraph because this assignment is not just a simple chatbot task. The required behavior is a small agentic workflow with routing, memory, retrieval, and tool execution. LangGraph fits that well because it gives explicit control over state and node transitions while still integrating cleanly with retrieval and LLM components. In this project, each user turn passes through a LangGraph flow that first classifies intent, then routes the conversation into one of three paths: greeting, knowledge retrieval, or lead qualification. This makes the system easier to reason about and aligns closely with the assignmentâ€™s expected workflow.
 
 State is stored in a typed graph state object that tracks the latest user message, conversation history, detected intent, retrieved knowledge context, collected lead fields, selected plan, and whether a lead has already been captured. That allows the assistant to remember information across 5 to 6 turns, such as when a user first mentions the Pro plan for a YouTube channel and later provides only their name and email. The RAG pipeline uses a local Markdown file, chunking, Gemini embeddings, and similarity-based retrieval to ground answers in local product data. Lead capture is intentionally gated so the mock tool runs only after all required fields are collected.
 
@@ -105,13 +105,3 @@ Agent: Remembers YouTube and the Pro plan, then asks only for email.
 User: rahul@gmail.com
 Agent: Calls mock_lead_capture and confirms success with a short lead summary.
 ```
-
-You can also follow the full script in `demo_conversation.txt` during recording.
-
-## Submission Tips
-
-- Record the demo from the terminal so the mock tool output is clearly visible.
-- Keep the video focused on one smooth end-to-end conversation.
-- In your README or during explanation, say explicitly that answers are grounded in the local knowledge base.
-- If asked why LangGraph was used, say it gives clear workflow control and reliable multi-turn state management.
-- Mention that the app includes fallback handling for temporary Gemini demand spikes.
